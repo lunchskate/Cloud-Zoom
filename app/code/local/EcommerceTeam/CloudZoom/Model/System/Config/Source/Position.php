@@ -27,15 +27,15 @@ class EcommerceTeam_CloudZoom_Model_System_Config_Source_Position
     /**
      * @return array
      */
-	public function toOptionArray()
-    	{
-            $helper = $this->getHelper();
-        	return array(
-            	'right'  => $helper->__('Right'),
-            	'left'   => $helper->__('Left'),
-            	'top'    => $helper->__('Top'),
-            	'bottom' => $helper->__('Bottom'),
-            	'inside' => $helper->__('Inside')
-        	);
-    	}
+    public function toOptionArray()
+    {
+        $helper = $this->getHelper();
+        return array(
+            'right'  => $helper->__('Right'),
+            'left'   => $helper->__('Left'),
+            'top'    => $helper->__('Top'),
+            'bottom' => $helper->__('Bottom'),
+            'inside' => $helper->__('Inside')
+        );
+    }
 }

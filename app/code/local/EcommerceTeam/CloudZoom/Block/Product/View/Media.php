@@ -30,9 +30,9 @@ class EcommerceTeam_CloudZoom_Block_Product_View_Media extends Mage_Catalog_Bloc
      * @return EcommerceTeam_CloudZoom_Block_Product_View_Media
      */
     protected function _beforeToHtml(){
-    	if($this->getLocalHelper()->getConfigFlag('enabled')){
-    		$this->setTemplate('ecommerceteam/cloud-zoom/catalog/product/view/media.phtml');
-    	}
-    	return $this;
+        if ($this->getLocalHelper()->getConfigFlag('enabled')) {
+            $this->setTemplate('ecommerceteam/cloud-zoom/catalog/product/view/media.phtml');
+        }
+        return $this;
     }
 }

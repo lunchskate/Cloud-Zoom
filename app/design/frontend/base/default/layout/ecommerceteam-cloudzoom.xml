@@ -10,32 +10,32 @@
  */
 -->
 <layout>
-	<default>
-		<reference name="head">
-			<action method="addItem">
+    <default>
+        <reference name="head">
+            <action method="addItem">
                 <type>skin_css</type>
                 <name>css/ecommerceteam/cloud-zoom.css</name>
             </action>
             <action method="addJs"><script>jquery/jquery-1.4.2.min.js</script></action>
             <action method="addJs"><script>ecommerceteam/cloud-zoom.1.0.2.min.js</script></action>
-		</reference>
-	</default>
-	<catalog_product_view>
-		<reference name="product.info">
-			<action method="unsetChild"><name>product.info.media</name></action>
-			<block type="ecommerceteam_cloudzoom/product_view_media"
+        </reference>
+    </default>
+    <catalog_product_view>
+        <reference name="product.info">
+            <action method="unsetChild"><name>product.info.media</name></action>
+            <block type="ecommerceteam_cloudzoom/product_view_media"
                    name="product.info.media"
                    as="media"
                    template="catalog/product/view/media.phtml"/>
-		</reference>
-	</catalog_product_view>
-	<review_product_list>
-		<reference name="product.info">
-			<action method="unsetChild"><name>product.info.media</name></action>
-			<block type="ecommerceteam_cloudzoom/product_view_media"
+        </reference>
+    </catalog_product_view>
+    <review_product_list>
+        <reference name="product.info">
+            <action method="unsetChild"><name>product.info.media</name></action>
+            <block type="ecommerceteam_cloudzoom/product_view_media"
                    name="product.info.media"
                    as="media"
                    template="catalog/product/view/media.phtml"/>
-		</reference>
-	</review_product_list>
+        </reference>
+    </review_product_list>
 </layout>

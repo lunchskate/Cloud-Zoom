@@ -16,16 +16,16 @@ $helper       = Mage::helper('ecommerceteam_cloudzoom');
 /** @var $outputHelper Mage_Core_Block_Abstract */
 $outputHelper = $this->helper('catalog/output');
 
-$position		= $helper->getConfigData('position');
-$showTitle	    = $helper->getConfigFlag('show_title');
-$titleOpacity	= intval($helper->getConfigData('title_opacity')) / 100;
-$lensOpacity	= intval($helper->getConfigData('lens_opacity')) / 100;
-$tintColor	    = trim($helper->getConfigData('tint_color'));
-$tintOpacity	= intval($helper->getConfigData('tint_opacity')) / 100;
-$zoomWidth	    = intval($helper->getConfigData('zoom_width'));
-$zoomHeight	    = intval($helper->getConfigData('zoom_height'));
-$bigImageWidth	= intval($helper->getConfigData('big_image_width'));
-$bigImageHeight	= intval($helper->getConfigData('big_image_height'));
+$position       = $helper->getConfigData('position');
+$showTitle      = $helper->getConfigFlag('show_title');
+$titleOpacity   = intval($helper->getConfigData('title_opacity')) / 100;
+$lensOpacity    = intval($helper->getConfigData('lens_opacity')) / 100;
+$tintColor      = trim($helper->getConfigData('tint_color'));
+$tintOpacity    = intval($helper->getConfigData('tint_opacity')) / 100;
+$zoomWidth      = intval($helper->getConfigData('zoom_width'));
+$zoomHeight     = intval($helper->getConfigData('zoom_height'));
+$bigImageWidth  = intval($helper->getConfigData('big_image_width'));
+$bigImageHeight = intval($helper->getConfigData('big_image_height'));
 
 $config = array(
     "position:'{$position}'",
@@ -60,9 +60,9 @@ if ($zoomHeight) {
 ?>
 <?php if ($product->getImage() != 'no_selection' && $product->getImage()): ?>
 <p class="product-image">
-	<a href='<?php echo $this->helper('catalog/image')->init($product, 'image')->resize($bigImageWidth, $bigImageHeight);?>' class = 'cloud-zoom' id='zoom1' rel="<?php echo implode($config, ',');?>">
-		<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(265, 265);?>" alt='' title="<?php echo $this->htmlEscape($this->getImageLabel());?>" />
-	</a>
+    <a href='<?php echo $this->helper('catalog/image')->init($product, 'image')->resize($bigImageWidth, $bigImageHeight);?>' class = 'cloud-zoom' id='zoom1' rel="<?php echo implode($config, ',');?>">
+        <img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(265, 265);?>" alt='' title="<?php echo $this->htmlEscape($this->getImageLabel());?>" />
+    </a>
 </p>
 <?php else: ?>
 <p class="product-image">
@@ -78,10 +78,10 @@ if ($zoomHeight) {
     <ul>
     <?php foreach ($this->getGalleryImages() as $_image): ?>
         <li>
-        	<a href='<?php echo $this->helper('catalog/image')->init($product, 'image', $_image->getFile())->resize($bigImageWidth, $bigImageHeight);?>' class='cloud-zoom-gallery' title='<?php echo $this->htmlEscape($_image->getLabel()) ?>'
-        	rel="useZoom: 'zoom1', smallImage: '<?php echo $this->helper('catalog/image')->init($product, 'image', $_image->getFile())->resize(265, 265);?>' ">
-        	<img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail', $_image->getFile())->resize(56, 56);?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>"/>
-        	</a>
+            <a href='<?php echo $this->helper('catalog/image')->init($product, 'image', $_image->getFile())->resize($bigImageWidth, $bigImageHeight);?>' class='cloud-zoom-gallery' title='<?php echo $this->htmlEscape($_image->getLabel()) ?>'
+            rel="useZoom: 'zoom1', smallImage: '<?php echo $this->helper('catalog/image')->init($product, 'image', $_image->getFile())->resize(265, 265);?>' ">
+            <img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail', $_image->getFile())->resize(56, 56);?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>"/>
+            </a>
         </li>
     <?php endforeach; ?>
     </ul>

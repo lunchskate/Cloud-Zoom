@@ -15,13 +15,13 @@
             <version>1.1.3</version>
         </EcommerceTeam_CloudZoom>
     </modules>
-	<global>
-		<models>
-		    <ecommerceteam_cloudzoom>
-		        <class>EcommerceTeam_CloudZoom_Model</class>
-		    </ecommerceteam_cloudzoom>
-		</models>
-		<blocks>
+    <global>
+        <models>
+            <ecommerceteam_cloudzoom>
+                <class>EcommerceTeam_CloudZoom_Model</class>
+            </ecommerceteam_cloudzoom>
+        </models>
+        <blocks>
             <ecommerceteam_cloudzoom>
                 <class>EcommerceTeam_CloudZoom_Block</class>
             </ecommerceteam_cloudzoom>
@@ -31,8 +31,8 @@
                 <class>EcommerceTeam_CloudZoom_Helper</class>
             </ecommerceteam_cloudzoom>
         </helpers>
-	</global>
-	<frontend>
+    </global>
+    <frontend>
         <layout>
             <updates>
                 <ecommerceteam_cloudzoom module="ecommerceteam_cloudzoom">
@@ -42,17 +42,17 @@
         </layout>
     </frontend>
     <default>
-    	<catalog>
-	    	<cloudzoom>
-	    		<enabled>1</enabled>
-	    		<position>right</position>
-	    		<show_title>1</show_title>
-	    		<title_opacity>50</title_opacity>
-	    		<lens_opacity>50</lens_opacity>
-	    		<tint_opacity>50</tint_opacity>
-	    		<big_image_width>800</big_image_width>
-	    		<big_image_height>800</big_image_height>
-	    	</cloudzoom>
-    	</catalog>
+        <catalog>
+            <cloudzoom>
+                <enabled>1</enabled>
+                <position>right</position>
+                <show_title>1</show_title>
+                <title_opacity>50</title_opacity>
+                <lens_opacity>50</lens_opacity>
+                <tint_opacity>50</tint_opacity>
+                <big_image_width>800</big_image_width>
+                <big_image_height>800</big_image_height>
+            </cloudzoom>
+        </catalog>
     </default>
 </config>
