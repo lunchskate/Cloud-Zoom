@@ -1,0 +1,89 @@
+<?php
+/**
+ * Cloud Image Zoom - Magento Extension
+ *
+ * @package     CloudZoom
+ * @category    EcommerceTeam
+ * @copyright   Copyright 2011 EcommerceTeam Inc. (http://www.ecommerce-team.com)
+ * @version:    1.1.3
+ */
+
+/** @var $this Mage_Catalog_Block_Product_View_Media */
+/** @var $product Mage_Catalog_Model_Product */
+$product      = $this->getProduct();
+/** @var $helper EcommerceTeam_CloudZoom_Helper_Data */
+$helper       = Mage::helper('ecommerceteam_cloudzoom');
+/** @var $outputHelper Mage_Core_Block_Abstract */
+$outputHelper = $this->helper('catalog/output');
+
+$position		= $helper->getConfigData('position');
+$showTitle	    = $helper->getConfigFlag('show_title');
+$titleOpacity	= intval($helper->getConfigData('title_opacity')) / 100;
+$lensOpacity	= intval($helper->getConfigData('lens_opacity')) / 100;
+$tintColor	    = trim($helper->getConfigData('tint_color'));
+$tintOpacity	= intval($helper->getConfigData('tint_opacity')) / 100;
+$zoomWidth	    = intval($helper->getConfigData('zoom_width'));
+$zoomHeight	    = intval($helper->getConfigData('zoom_height'));
+$bigImageWidth	= intval($helper->getConfigData('big_image_width'));
+$bigImageHeight	= intval($helper->getConfigData('big_image_height'));
+
+$config = array(
+    "position:'{$position}'",
+    "showTitle:{$showTitle}",
+    "titleOpacity:{$titleOpacity}",
+    "lensOpacity:{$lensOpacity}",
+);
+    
+if ($position == 'inside') {
+    $config[] = 'adjustX: -4,adjustY:-4';
+} elseif ($position == 'right') {
+    $config[] = 'adjustX: 10,adjustY:-4';
+} elseif ($position == 'bottom') {
+    $config[] = 'adjustX: -4,adjustY:10';
+} elseif ($position == 'left') {
+    $config[] = 'adjustX: -18,adjustY:-4';
+} elseif ($position == 'top') {
+    $config[] = 'adjustX: -4,adjustY:-18';
+}
+
+if ($tintColor) {
+    $config[] = "tint:'{$tintColor}',tintOpacity:{$tintOpacity}";
+}
+
+if ($zoomWidth) {
+    $config[] = "zoomWidth:{$zoomWidth}";
+}
+
+if ($zoomHeight) {
+    $config[] = "zoomHeight:{$zoomHeight}";
+}
+?>
+<?php if ($product->getImage() != 'no_selection' && $product->getImage()): ?>
+<p class="product-image">
+	<a href='<?php echo $this->helper('catalog/image')->init($product, 'image')->resize($bigImageWidth, $bigImageHeight);?>' class = 'cloud-zoom' id='zoom1' rel="<?php echo implode($config, ',');?>">
+		<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(265, 265);?>" alt='' title="<?php echo $this->htmlEscape($this->getImageLabel());?>" />
+	</a>
+</p>
+<?php else: ?>
+<p class="product-image">
+    <?php
+        $_img = '<img src="'.$this->helper('catalog/image')->init($product, 'image')->resize(265).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+        echo $outputHelper->productAttribute($product, $_img, 'image');
+    ?>
+</p>
+<?php endif; ?>
+<?php if (count($this->getGalleryImages()) > 0): ?>
+<div class="more-views">
+    <h2><?php echo $this->__('More Views') ?></h2>
+    <ul>
+    <?php foreach ($this->getGalleryImages() as $_image): ?>
+        <li>
+        	<a href='<?php echo $this->helper('catalog/image')->init($product, 'image', $_image->getFile())->resize($bigImageWidth, $bigImageHeight);?>' class='cloud-zoom-gallery' title='<?php echo $this->htmlEscape($_image->getLabel()) ?>'
+        	rel="useZoom: 'zoom1', smallImage: '<?php echo $this->helper('catalog/image')->init($product, 'image', $_image->getFile())->resize(265, 265);?>' ">
+        	<img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail', $_image->getFile())->resize(56, 56);?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>"/>
+        	</a>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>
