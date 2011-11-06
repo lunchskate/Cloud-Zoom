@@ -20,19 +20,19 @@
 
     function CloudZoom(jWin, opts) {
         var sImg = $('img', jWin);
-		var	img1;
-		var	img2;
+        var img1;
+        var img2;
         var zoomDiv = null;
-		var	$mouseTrap = null;
-		var	lens = null;
-		var	$tint = null;
-		var	softFocus = null;
-		var	$ie6Fix = null;
-		var	zoomImage;
+        var $mouseTrap = null;
+        var lens = null;
+        var $tint = null;
+        var softFocus = null;
+        var $ie6Fix = null;
+        var zoomImage;
         var controlTimer = 0;      
         var cw, ch;
         var destU = 0;
-		var	destV = 0;
+        var destV = 0;
         var currV = 0;
         var currU = 0;      
         var filesLoaded = 0;
@@ -42,9 +42,9 @@
         // Display an image loading message. This message gets deleted when the images have loaded and the zoom init function is called.
         // We add a small delay before the message is displayed to avoid the message flicking on then off again virtually immediately if the
         // images load really fast, e.g. from the cache. 
-        //var	ctx = this;
+        //var    ctx = this;
         setTimeout(function () {
-            //						 <img src="/images/loading.gif"/>
+            //                         <img src="/images/loading.gif"/>
             if ($mouseTrap === null) {
                 var w = jWin.width();
                 jWin.parent().append(format('<div style="width:%0px;position:absolute;top:75%;left:%1px;text-align:center" class="cloud-zoom-loading" >Loading...</div>', w / 3, (w / 2) - (w / 6))).find(':last').css('opacity', 0.5);
@@ -102,11 +102,11 @@
         // This is called when the zoom window has faded out so it can be removed.
         this.fadedOut = function () {
             
-			if (zoomDiv) {
+            if (zoomDiv) {
                 zoomDiv.remove();
                 zoomDiv = null;
             }
-			 this.removeBits();
+             this.removeBits();
             //ie6FixRemove();
         };
 
@@ -149,7 +149,7 @@
         this.init2 = function (img, id) {
 
             filesLoaded++;
-            //console.log(img.src + ' ' + id + ' ' + img.width);	
+            //console.log(img.src + ' ' + id + ' ' + img.width);    
             if (id === 1) {
                 zoomImage = img;
             }
@@ -166,34 +166,34 @@
 
 
 /* Add a box (mouseTrap) over the small image to trap mouse events.
-		It has priority over zoom window to avoid issues with inner zoom.
-		We need the dummy background image as IE does not trap mouse events on
-		transparent parts of a div.
-		*/
+        It has priority over zoom window to avoid issues with inner zoom.
+        We need the dummy background image as IE does not trap mouse events on
+        transparent parts of a div.
+        */
             $mouseTrap = jWin.parent().append(format("<div class='mousetrap' style='background:#fff;opacity:0;filter:alpha(opacity=0);z-index:99;position:absolute;width:%0px;height:%1px;left:%2px;top:%3px;\'></div>", sImg.outerWidth(), sImg.outerHeight(), 0, 0)).find(':last');
 
-            //////////////////////////////////////////////////////////////////////			
+            //////////////////////////////////////////////////////////////////////            
             /* Do as little as possible in mousemove event to prevent slowdown. */
             $mouseTrap.bind('mousemove', this, function (event) {
                 // Just update the mouse position
                 mx = event.pageX;
                 my = event.pageY;
             });
-            //////////////////////////////////////////////////////////////////////					
+            //////////////////////////////////////////////////////////////////////                    
             $mouseTrap.bind('mouseleave', this, function (event) {
                 clearTimeout(controlTimer);
                 //event.data.removeBits();                
-				if(lens) { lens.fadeOut(299); }
-				if($tint) { $tint.fadeOut(299); }
-				if(softFocus) { softFocus.fadeOut(299); }
-				zoomDiv.fadeOut(300, function () {
+                if(lens) { lens.fadeOut(299); }
+                if($tint) { $tint.fadeOut(299); }
+                if(softFocus) { softFocus.fadeOut(299); }
+                zoomDiv.fadeOut(300, function () {
                     ctx.fadedOut();
-                });																
+                });                                                                
                 return false;
             });
-            //////////////////////////////////////////////////////////////////////			
+            //////////////////////////////////////////////////////////////////////            
             $mouseTrap.bind('mouseenter', this, function (event) {
-				mx = event.pageX;
+                mx = event.pageX;
                 my = event.pageY;
                 zw = event.data;
                 if (zoomDiv) {
@@ -216,19 +216,19 @@
                     h = sih;
                 }
                 //$('#info').text( xPos + ' ' + yPos + ' ' + siw + ' ' + sih );
-                var appendTo = jWin.parent(); // attach to the wrapper			
+                var appendTo = jWin.parent(); // attach to the wrapper            
                 switch (opts.position) {
                 case 'top':
                     yPos -= h; // + opts.adjustY;
                     break;
                 case 'right':
-                    xPos += siw; // + opts.adjustX;					
+                    xPos += siw; // + opts.adjustX;                    
                     break;
                 case 'bottom':
                     yPos += sih; // + opts.adjustY;
                     break;
                 case 'left':
-                    xPos -= w; // + opts.adjustX;					
+                    xPos -= w; // + opts.adjustX;                    
                     break;
                 case 'inside':
                     w = siw;
@@ -241,7 +241,7 @@
                     if (!appendTo.length) {
                         appendTo = jWin;
                         xPos += siw; //+ opts.adjustX;
-                        yPos += sih; // + opts.adjustY;	
+                        yPos += sih; // + opts.adjustY;    
                     } else {
                         w = appendTo.innerWidth();
                         h = appendTo.innerHeight();
@@ -255,7 +255,7 @@
                     zoomDiv.append(format('<div class="cloud-zoom-title">%0</div>', sImg.attr('title'))).find(':last').css('opacity', opts.titleOpacity);
                 }
 
-                // Fix ie6 select elements wrong z-index bug. Placing an iFrame over the select element solves the issue...		
+                // Fix ie6 select elements wrong z-index bug. Placing an iFrame over the select element solves the issue...        
                 if ($.browser.msie && $.browser.version < 7) {
                     $ie6Fix = $('<iframe frameborder="0" src="#"></iframe>').css({
                         position: "absolute",
@@ -276,10 +276,10 @@
                 
                 
                 if(typeof event.data.zoomDivWidth == 'undefined'){
-                	event.data.zoomDivWidth = zoomDiv.get(0).offsetWidth - (zoomDiv.css('border-left-width').replace(/\D/g, '')*1) - (zoomDiv.css('border-right-width').replace(/\D/g, '')*1);
+                    event.data.zoomDivWidth = zoomDiv.get(0).offsetWidth - (zoomDiv.css('border-left-width').replace(/\D/g, '')*1) - (zoomDiv.css('border-right-width').replace(/\D/g, '')*1);
                 }
                 if(typeof event.data.zoomDivHeight == 'undefined'){
-                	event.data.zoomDivHeight = zoomDiv.get(0).offsetHeight - (zoomDiv.css('border-top-width').replace(/\D/g, '')*1) - (zoomDiv.css('border-bottom-width').replace(/\D/g, '')*1);
+                    event.data.zoomDivHeight = zoomDiv.get(0).offsetHeight - (zoomDiv.css('border-top-width').replace(/\D/g, '')*1) - (zoomDiv.css('border-bottom-width').replace(/\D/g, '')*1);
                 }
                 
                 cw = (sImg.outerWidth() / zoomImage.width) * event.data.zoomDivWidth;
@@ -294,13 +294,13 @@
 
                 var noTrans = false;
 
-                // Init tint layer if needed. (Not relevant if using inside mode)			
+                // Init tint layer if needed. (Not relevant if using inside mode)            
                 if (opts.tint) {
                     lens.css('background', 'url("' + sImg.attr('src') + '")');
                     $tint = jWin.append(format('<div style="display:none;position:absolute; left:0px; top:0px; width:%0px; height:%1px; background-color:%2;" />', sImg.outerWidth(), sImg.outerHeight(), opts.tint)).find(':last');
                     $tint.css('opacity', opts.tintOpacity);                    
-					noTrans = true;
-					$tint.fadeIn(500);
+                    noTrans = true;
+                    $tint.fadeIn(500);
 
                 }
                 if (opts.softFocus) {
@@ -313,9 +313,9 @@
                 }
 
                 if (!noTrans) {
-                    lens.css('opacity', opts.lensOpacity);										
+                    lens.css('opacity', opts.lensOpacity);                                        
                 }
-				if ( opts.position !== 'inside' ) { lens.fadeIn(500); }
+                if ( opts.position !== 'inside' ) { lens.fadeIn(500); }
 
                 // Start processing. 
                 zw.controlLoop();
@@ -343,10 +343,10 @@
             document.execCommand("BackgroundImageCache", false, true);
         } catch (e) {}
         this.each(function () {
-			var	relOpts, opts;
-			// Hmm...eval...slap on wrist.
-			eval('var	a = {' + $(this).attr('rel') + '}');
-			relOpts = a;
+            var    relOpts, opts;
+            // Hmm...eval...slap on wrist.
+            eval('var    a = {' + $(this).attr('rel') + '}');
+            relOpts = a;
             if ($(this).is('.cloud-zoom')) {
                 $(this).css({
                     'position': 'relative',
@@ -375,7 +375,7 @@
                     $('#' + data.useZoom).attr('href', event.data.attr('href'));
                     // Change the small image to point to the new small image.
                     $('#' + data.useZoom + ' img').attr('src', event.data.data('relOpts').smallImage);
-                    // Init a new zoom with the new images.				
+                    // Init a new zoom with the new images.                
                     $('#' + event.data.data('relOpts').useZoom).CloudZoom();
                     return false;
                 });
