@@ -13,7 +13,7 @@
     <modules>
         <EcommerceTeam_CloudZoom>
             <active>true</active>
-            <codePool>local</codePool>
+            <codePool>community</codePool>
         </EcommerceTeam_CloudZoom>
     </modules>
 </config>
