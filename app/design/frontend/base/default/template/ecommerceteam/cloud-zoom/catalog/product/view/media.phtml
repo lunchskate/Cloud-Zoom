@@ -17,7 +17,7 @@ $helper       = Mage::helper('ecommerceteam_cloudzoom');
 $outputHelper = $this->helper('catalog/output');
 
 $position       = $helper->getConfigData('position');
-$showTitle      = $helper->getConfigFlag('show_title');
+$showTitle      = intval($helper->getConfigFlag('show_title'));
 $titleOpacity   = intval($helper->getConfigData('title_opacity')) / 100;
 $lensOpacity    = intval($helper->getConfigData('lens_opacity')) / 100;
 $tintColor      = trim($helper->getConfigData('tint_color'));
